@@ -25,6 +25,7 @@ class Settings(BaseSettings):
 
     API_KEYS_ENABLED: bool = True
     API_KEY_HEADER: str = "X-Api-Key"
+    ADMIN_API_KEYS: str = ""
 
     REDIS_URL: str | None = "redis://127.0.0.1:6379/0"
     RL_WINDOW_SECONDS: int = 600

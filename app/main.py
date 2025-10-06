@@ -6,10 +6,10 @@ from fastapi.templating import Jinja2Templates
 from starlette.staticfiles import StaticFiles
 
 from app.config import settings
-from app.routers import health, brands, logos  
+from app.routers import health, brands, logos, admin  
 
 from app.middleware.request_log import RequestLogMiddleware
-
+from app.middleware.ratelimit_headers import RateLimitHeadersMiddleware
 
 app = FastAPI(title=settings.APP_NAME, version="0.1.0")
 
@@ -30,7 +30,6 @@ app.add_middleware(
     ttl_seconds=settings.REQLOG_TTL_SECONDS
 )
 
-from app.middleware.ratelimit_headers import RateLimitHeadersMiddleware
 app.add_middleware(RateLimitHeadersMiddleware)
 
 # Routers

@@ -33,6 +33,11 @@ def get_logo(brand_slug: str, response: Response, db: Session = Depends(get_db))
         if p:
             rel = to_rel_url(p)
             assets[variant] = {"path": rel, "url": build_public_url(rel)}
+        
+    
+
+    import logging
+    logging.warning(f"DEBUG LOGO CHECK: brand_slug={brand_slug}, assets={assets}")
 
     if not assets:
         raise HTTPException(status_code=404, detail="Logo not available")
